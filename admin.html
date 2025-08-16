@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Painel Administrativo</h1>
+
+    <h2>📌 Vagas Cadastradas</h2>
+    <div id="vagas"></div>
+
+    <h2>👤 Candidatos</h2>
+    <div id="candidatos"></div>
+
+    <script>
+        fetch("backend/listar_vagas.php")
+            .then(res => res.json())
+            .then(vagas => {
+                const vagasDiv = document.getElementById("vagas");
+                if (vagas.length === 0) {
+                    vagasDiv.innerHTML = "<p>Nenhuma vaga cadastrada.</p>";
+                    return;
+                }
+                vagas.forEach(vaga => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `<strong>${vaga.titulo}</strong><br>
+                        ${vaga.descricao}<br>
+                        Salário: R$ ${vaga.salario}<br>
+                        Criada em: ${vaga.data_criacao}
+                        <hr>`;
+                    vagasDiv.appendChild(div);
+                });
+            });
+
+        fetch("backend/listar_pessoas.php")
+            .then(res => res.json())
+            .then(candidatos => {
+                const candDiv = document.getElementById("candidatos");
+                if (candidatos.length === 0) {
+                    candDiv.innerHTML = "<p>Nenhum candidato cadastrado.</p>";
+                    return;
+                }
+                candidatos.forEach(cand => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `<strong>${cand.nome}</strong> (${cand.email})<br>
+                        Vaga: ${cand.vaga}
+                        <hr>`;
+                    candDiv.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>

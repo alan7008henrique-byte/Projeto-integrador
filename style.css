@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+h1, h2 { color: #333; }
+form { display: flex; flex-direction: column; max-width: 400px; }
+label { margin-top: 10px; }
+input, textarea, button { margin-top: 5px; padding: 8px; }
+button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+button:hover { background: #45a049; }
+div { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+a { color: blue; text-decoration: none; }
+a:hover { text-decoration: underline; }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Candidato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Cadastro de Candidato</h1>
+    <form action="backend/salvar_pessoa.php" method="POST">
+        <input type="hidden" name="vaga_id" id="vaga_id">
+
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById("vaga_id").value = params.get("vaga_id");
+    </script>
+</body>
+</html>

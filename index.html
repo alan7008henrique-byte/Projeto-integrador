@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vagas Disponíveis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Vagas Cadastradas</h1>
+    <a href="cadastro_vaga.html">Cadastrar Nova Vaga</a> | 
+    <a href="admin.html">Painel Administrativo</a>
+    <div id="lista-vagas"></div>
+
+    <script>
+        fetch("backend/listar_vagas.php")
+            .then(res => res.json())
+            .then(vagas => {
+                const lista = document.getElementById("lista-vagas");
+                vagas.forEach(vaga => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `<h2>${vaga.titulo}</h2>
+                                     <p>${vaga.descricao}</p>
+                                     <p>Salário: R$ ${vaga.salario}</p>
+                                     <a href="cadastro_pessoa.html?vaga_id=${vaga.id}">Candidatar-se</a>`;
+                    lista.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>
